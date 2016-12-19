@@ -54,22 +54,18 @@ int tmp;
 	
 	 
 	 public void NEW(){
-		
-
-		 for (int i = 0; i < array.length; i++) {
+		for (int i = 0; i < array.length; i++) {
 		     array[i] = ((int)(Math.random() * 16));
 		    
 		     for(int j=0;j<i;j++){
 		  
 		    	 if (array[j]==array[i]){
-		    		
-		    		i--; 
+		    			i--; 
 		    	 }
-		    	
-		     }
-		 
-		 }
+		      }
+		  }
 	 }
+	 
 	 public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -381,6 +377,16 @@ frame.setVisible(true);
 				
 				//-----------------------------------------------------------//
 				
+				
+				JLabel txtregð5 = new JLabel("");
+
+				txtregð5.setFont(new Font("Tahoma",Font.PLAIN,20));
+				txtregð5.setForeground(Color.BLUE);
+				txtregð5.setBounds(0, 13, 120, 23);
+				frame.getContentPane().add(txtregð5);
+				
+				
+				
 				//     Ïîëå ñ òàéìåðîì
 				JLabel txtregð4 = new JLabel("Time:");
 
@@ -448,9 +454,24 @@ frame.setVisible(true);
 				frame.getContentPane().add(btnNewButton2);
 				
 				
-				
-				
-				   NEW();
+				int sum=0;
+				do{
+					NEW();
+					sum=0;
+					for(int i=0;i<16;i++){
+						if(array[i]==0){
+					sum+=i/4;
+					continue;
+					}
+		for (int j=i+1;j<16;j++){
+			if (array[j]<array[i])
+				sum++;
+		}
+					}
+			txtregð5.setText(""+sum);
+				}
+				while (sum % 2==1);
+				   
 			        JButton btn1 = new JButton(""+array[0]);
 			        JButton btn2 = new JButton(""+array[1]);
 			        JButton btn3 = new JButton(""+array[2]);
@@ -514,14 +535,31 @@ frame.setVisible(true);
 			btnStart.setForeground(Color.BLUE);
 			btnStart.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-			NEW();
+
 		     btnNewButton2.setText("START");
 			  i=0 ;
 	            m=0;
 	            i2=0 ;
 	           m2=0;
 	       	txtregð3.setText(""+m2+i2+":"+m+i+"");
-			      
+			   
+			int sum=0;
+			do{
+				NEW();
+				sum=0;
+				for(int i=0;i<16;i++){
+					if(array[i]==0){
+				sum+=i/4;
+				continue;
+				}
+	for (int j=i+1;j<16;j++){
+		if (array[j]<array[i])
+			sum++;
+	}
+				}
+		txtregð5.setText(""+sum);
+			}
+			while (sum % 2==1);
 			btn1.setText(""+array[0]);
 			btn2.setText(""+array[1]);
 			btn3.setText(""+array[2]);
@@ -602,7 +640,13 @@ frame.setVisible(true);
 				
 					
 					}
-              
+                //    for(int x=0;x<15;){
+                   // 	if (array[x]==x+1){
+                    	//	String msg;
+						//	 msg="You Win";
+				          //    JOptionPane.showMessageDialog(frame, msg);	
+                    //	}
+                   // }
 			 if (btn1.getText()==(""+1)){
 					if (btn2.getText()==(""+2)){
 						if (btn3.getText()==(""+3)){
@@ -1681,20 +1725,7 @@ frame.setVisible(true);
 		btnft.setFont(new Font("Tahoma",Font.BOLD,20));
 		btnft.setBounds(138,227,70,60);
 		frame.getContentPane().add(btnft);
-		
-		
-		
-	
-		
 
-		
-		
-		
-		
-		
-		
-
-	
 	}
 	}
 	
