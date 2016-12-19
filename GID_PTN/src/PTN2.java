@@ -8,16 +8,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.*; 
-import java.util.Scanner; 
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+
+//import javax.swing.swing.*;
+//import java.text.*;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
@@ -26,11 +33,17 @@ public class PTN2 {
 String firstnum;
 String secondnum;
 String firstnum2;
+int i=0 ;
+int m=0;
+int i2=0;
+int m2=0;
+int tmp;
 	private JFrame frame;
 	private JFrame frame2;
 	private JFrame frame3;
 	private JFrame frame4;
 	private JFrame frame5;
+	private JFrame frame6;
 
 	/**
 	 * Launch the application.
@@ -122,31 +135,21 @@ String firstnum2;
 		txtfil.setBounds(140, 50, 86, 20);
         frame2.getContentPane().add(txtfil);
         txtfil.setColumns(10);
-		
-		
 	
-		
-		
+		        
+		        
                    //         NEW GAME         //		
 		  JButton start2 = new JButton("START GAME");
 		
 		  start2.setForeground(Color.BLUE);
 		  start2.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent arg0){
-		//	lblNewLabel.setText(txtfil.getText());
-		//if(txtfil.getText()=="qwe"){	lblNewLabel.setText(txtfil.getText());	}	
-					Scanner scan = new Scanner(System.in); 
+					
+					
 
-					File file = new File("file.txt"); 
-					System.out.println("Ââåäèòå, ïîæàëóéñòà òåêñò äëÿ çàïèñè:"); 
-					String text = scan.nextLine(); 
-
-				
-					System.out.println("Òåêñò çàïèñàí â ôàéë file.txt");
-
-	frame2.setVisible(false);
-	frame.setVisible(true);
-				}
+frame2.setVisible(false);
+frame.setVisible(true);
+}
 				}
 	);
 		  start2.setFont(new Font("Tahoma",Font.BOLD,20));
@@ -362,26 +365,92 @@ String firstnum2;
 														frame5.getContentPane().add(fr4);			
 												
 		//-----------------------------------------------------------//
-		
+	JButton btnNewButton2 = new JButton("START");
+
 				JButton btnNewButton = new JButton("BACK");
 				btnNewButton.setForeground(Color.BLUE);
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						 btnNewButton2.setText("START");
 						frame.setVisible(false);
 						frame2.setVisible(true);
-						
-						// String msg;
-						// msg="You Win";
-			             // JOptionPane.showMessageDialog(frame, msg);
+						}
+				});
+				btnNewButton.setBounds(190, 298, 89, 23);
+				frame.getContentPane().add(btnNewButton);
+				
+				//-----------------------------------------------------------//
+				
+				//     Ïîëå ñ òàéìåðîì
+				JLabel txtregð4 = new JLabel("Time:");
+
+				txtregð4.setFont(new Font("Tahoma",Font.PLAIN,20));
+				txtregð4.setForeground(Color.BLUE);
+				txtregð4.setBounds(60, 13, 120, 23);
+				frame.getContentPane().add(txtregð4);
+				
+				
+				//     Ïîëå ñ òàéìåðîì
+				JLabel txtregð3 = new JLabel("00:00");
+				txtregð3.setHorizontalAlignment(SwingConstants.CENTER);
+				txtregð3.setFont(new Font("Tahoma",Font.PLAIN,20));
+				txtregð3.setForeground(Color.BLUE);
+				txtregð3.setBounds(90, 15, 120, 23);
+				frame.getContentPane().add(txtregð3);
+				
+				
+			    
+			
+				 
+				
+//				  Êíîïêà çàïóñêàþùàÿ òàéìåð START/STOP
+				
+								btnNewButton2.setForeground(Color.BLUE);
+				btnNewButton2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+					if (btnNewButton2.getText()=="START"){
+						btnNewButton2.setText("STOP");	
+					}	else btnNewButton2.setText("START");
+				
+				
+				
+						final Timer time = new Timer();
+			        time.schedule(new TimerTask() {
+			          
+			            @Override
+			            public void run() {
+			            	if (btnNewButton2.getText()=="START"){
+			            		time.cancel();
+				                 return;
+			            	}
+			            	 i = i + 1;
+			            	
+			            	if (i==10){
+			            	m++;i=0;
+			             	}
+			            	if (m==6) {
+			            	if	(i==0){
+			            		i=0;
+			            		m=0;
+			            		i2++;
+			            		}
+				             	}
+			            	if (i2==10){
+				            	m2++;i2=0;
+				             	}
+			            	txtregð3.setText(""+m2+i2+":"+m+i+"");
+			           } 
+			        }, 1000, 1000); 
+				
 					}
 				});
-				btnNewButton.setBounds(180, 298, 89, 23);
-				frame.getContentPane().add(btnNewButton);
+				btnNewButton2.setBounds(95, 298, 89, 23);
+				frame.getContentPane().add(btnNewButton2);
+				
+				
 				
 				
 				   NEW();
-			       
-					
 			        JButton btn1 = new JButton(""+array[0]);
 			        JButton btn2 = new JButton(""+array[1]);
 			        JButton btn3 = new JButton(""+array[2]);
@@ -441,34 +510,18 @@ String firstnum2;
 						btn.setForeground(Color.RED);
 		
 				
-			
-
-
-        
-        
-    
-		
-	/*	
-		
-		frame.getContentPane().setBackground(Color.RED);
-    	//btn8.setForeground(Color.GREEN);
-		
-		
-		*/
-		
-			
-		
-	
-			
-			
-			
-			
 			JButton btnStart = new JButton("NEW");
 			btnStart.setForeground(Color.BLUE);
 			btnStart.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 			NEW();
-
+		     btnNewButton2.setText("START");
+			  i=0 ;
+	            m=0;
+	            i2=0 ;
+	           m2=0;
+	       	txtregð3.setText(""+m2+i2+":"+m+i+"");
+			      
 			btn1.setText(""+array[0]);
 			btn2.setText(""+array[1]);
 			btn3.setText(""+array[2]);
@@ -512,54 +565,44 @@ String firstnum2;
 				frame.getContentPane().add(btn7);
 					}
 				});
-				btnStart.setBounds(10, 298, 89, 23);
+				btnStart.setBounds(0, 298, 89, 23);
 				frame.getContentPane().add(btnStart);
 	 /*------------------------7-----------------------*/ 
 	    btn7.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-
-			
-			/*if (btn7.getText()==""){
-			btn7.setText(firstnum);	
-			} else{
-				firstnum=btn7.getText();
-				btn7.setText("");
-			}
-			}
-		});*/
-			
-		
-			 if (btn7.getText()==""){
+                    if (btn7.getText()==""){
 					
 				} else{
 					if (btn3.getText()==""){
+						array[2]=array[7];
+						array[6]=0;
 						
 						btn3.setText(btn7.getText());
 						btn7.setText("");
-						//btn3.setBackground(Color.GREEN);
-						//btn7.setBackground(Color.RED);
 					}
 					if (btnel.getText()==""){
+						array[10]=array[6];
+						array[6]=0;
 						btnel.setText(btn7.getText());
 						btn7.setText("");
-						//btnel.setBackground(Color.GREEN);
-						//btn7.setBackground(Color.RED);
 					}
 					if (btn6.getText()==""){
+						array[5]=array[6];
+						array[6]=0;
 						btn6.setText(btn7.getText());
 						btn7.setText("");
-						//btn6.setBackground(Color.GREEN);
-						//btn7.setBackground(Color.RED);
 					}
 					if (btn8.getText()==""){
+						array[7]=array[6];
+						array[6]=0;
 						btn8.setText(btn7.getText());
 						btn7.setText("");
-				//	btn8.setBackground(Color.GREEN);
-					//btn7.setBackground(Color.RED);
+				
 					}
 				
 					
 					}
+              
 			 if (btn1.getText()==(""+1)){
 					if (btn2.getText()==(""+2)){
 						if (btn3.getText()==(""+3)){
@@ -608,31 +651,28 @@ String firstnum2;
 	
 		btn8.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-			/*
-			if (btn8.getText()==""){
-				btn8.setText(firstnum);	
-				} else{
-					firstnum=btn8.getText();
-					btn8.setText("");
-				}
-				}
-				});*/
 			
 			 if (btn8.getText()==""){
 					
 				} else{
 					if (btn4.getText()==""){
+						array[3]=array[7];
+						array[7]=0;
 						btn4.setText(btn8.getText());
 						btn8.setText("");
 					//	btn4.setBackground(Color.GREEN);
 					//	btn8.setBackground(Color.RED);
 					}if (btn7.getText()==""){
+						array[6]=array[7];
+						array[7]=0;
 						btn7.setText(btn8.getText());
 						btn8.setText("");
 					//	btn7.setBackground(Color.GREEN);
 					//	btn8.setBackground(Color.RED);
 					}
 					if (btntw.getText()==""){
+						array[11]=array[7];
+						array[7]=0;
 						btntw.setText(btn8.getText());
 						btn8.setText("");
 					//	btntw.setBackground(Color.GREEN);
@@ -685,39 +725,29 @@ String firstnum2;
 
 		btn9.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-			/*
-			
-			if (btn9.getText()==""){
-				btn9.setText(firstnum);	
-				} else{
-					firstnum=btn9.getText();
-					btn9.setText("");
-				}
-				}
-			
-		});*/
+		
 			 if (btn9.getText()==""){
 					
 				} else{
 					if (btn5.getText()==""){
+						array[4]=array[8];
+						array[8]=0;
 						btn5.setText(btn9.getText());
 						btn9.setText("");
-				//		btn5.setBackground(Color.GREEN);
-				//		btn9.setBackground(Color.RED);
 					}
 
 					if (btnten.getText()==""){
+						array[9]=array[8];
+						array[8]=0;
 						btnten.setText(btn9.getText());
 						btn9.setText("");
-					//	btnten.setBackground(Color.GREEN);
-					//	btn9.setBackground(Color.RED);
 					}
 
 					if (btnth.getText()==""){
+						array[12]=array[8];
+						array[8]=0;
 						btnth.setText(btn9.getText());
 						btn9.setText("");
-					//	btnth.setBackground(Color.GREEN);
-					//	btn9.setBackground(Color.RED);
 					}
 					}
 			 if (btn1.getText()==(""+1)){
@@ -766,41 +796,32 @@ String firstnum2;
 		
 		btn6.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-		/*	if (btn6.getText()==""){
-				btn6.setText(firstnum);	
-				} else{
-					firstnum=btn6.getText();
-					btn6.setText("");
-				}
-				}
-		
-		});*/
             if (btn6.getText()==""){
 				
 		} else{
 			if (btn2.getText()==""){
+				array[1]=array[5];
+				array[5]=0;
 				btn2.setText(btn6.getText());
 				btn6.setText("");
-				//btn2.setBackground(Color.GREEN);
-			//	btn6.setBackground(Color.RED);
 			}
 			if (btn5.getText()==""){
+				array[4]=array[5];
+				array[5]=0;
 				btn5.setText(btn6.getText());
 				btn6.setText("");
-			//	btn5.setBackground(Color.GREEN);
-			//	btn6.setBackground(Color.RED);
 			}
 			if (btn7.getText()==""){
+				array[6]=array[5];
+				array[5]=0;
 				btn7.setText(btn6.getText());
 				btn6.setText("");
-			//	btn7.setBackground(Color.GREEN);
-				//btn6.setBackground(Color.RED);
 			}
 			if (btnten.getText()==""){
+				array[9]=array[5];
+				array[5]=0;
 				btnten.setText(btn6.getText());
 				btn6.setText("");
-				//btnten.setBackground(Color.GREEN);
-				//btn6.setBackground(Color.RED);
 			}
 		}
    		 if (btn1.getText()==(""+1)){
@@ -848,35 +869,27 @@ String firstnum2;
 		   
 		btn5.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-			/*if (btn5.getText()==""){
-				btn5.setText(firstnum);	
-				} else{
-					firstnum=btn5.getText();
-					btn5.setText("");
-				}
-				}
 			
-		});*/
             if (btn5.getText()==""){
 				
 		} else{
 			if (btn6.getText()==""){
+				array[5]=array[4];
+				array[4]=0;
 				btn6.setText(btn5.getText());
 				btn5.setText("");
-			//	btn6.setBackground(Color.GREEN);
-			//	btn5.setBackground(Color.RED);
 			}
 			if (btn1.getText()==""){
+				array[0]=array[4];
+				array[4]=0;
 				btn1.setText(btn5.getText());
 				btn5.setText("");
-			//	btn1.setBackground(Color.GREEN);
-			//	btn5.setBackground(Color.RED);
 			}
 			if (btn9.getText()==""){
+				array[8]=array[4];
+				array[4]=0;
 				btn9.setText(btn5.getText());
 				btn5.setText("");
-			//	btn9.setBackground(Color.GREEN);
-			//	btn5.setBackground(Color.RED);
 			}
 		}
    		 if (btn1.getText()==(""+1)){
@@ -923,29 +936,20 @@ String firstnum2;
 		   
 		btn4.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-		/*	if (btn4.getText()==""){
-				btn4.setText(firstnum);	
-				} else{
-					firstnum=btn4.getText();
-					btn4.setText("");
-				}
-				}
-		
-		});*/
-            if (btn4.getText()==""){
+		    if (btn4.getText()==""){
 				
 		} else{
 			if (btn3.getText()==""){
+				array[2]=array[3];
+				array[3]=0;
 				btn3.setText(btn4.getText());
 				btn4.setText("");
-			//	btn3.setBackground(Color.GREEN);
-			//	btn4.setBackground(Color.RED);
 			}
 			if (btn8.getText()==""){
+				array[7]=array[3];
+				array[3]=0;
 				btn8.setText(btn4.getText());
 				btn4.setText("");
-			//	btn8.setBackground(Color.GREEN);
-			//	btn4.setBackground(Color.RED);
 			}
 		}
    		 if (btn1.getText()==(""+1)){
@@ -992,34 +996,26 @@ String firstnum2;
 		   
 		btn3.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-			/*if (btn3.getText()==""){
-				btn3.setText(firstnum);	
-				} else{
-					firstnum=btn3.getText();
-					btn3.setText("");
-				}
-				}
-			});*/
-                if (btn3.getText()==""){
+			   if (btn3.getText()==""){
 				
 			} else{
 				if (btn2.getText()==""){
+					array[1]=array[2];
+					array[2]=0;
 					btn2.setText(btn3.getText());
 					btn3.setText("");
-			//		btn2.setBackground(Color.GREEN);
-			//		btn3.setBackground(Color.RED);
 				}
 				if (btn7.getText()==""){
+					array[6]=array[2];
+					array[2]=0;
 					btn7.setText(btn3.getText());
 					btn3.setText("");
-				//	btn7.setBackground(Color.GREEN);
-				//	btn3.setBackground(Color.RED);
-				}
+					}
 				if (btn4.getText()==""){
+					array[3]=array[2];
+					array[2]=0;
 					btn4.setText(btn3.getText());
 					btn3.setText("");
-				//	btn4.setBackground(Color.GREEN);
-				//	btn3.setBackground(Color.RED);
 				}
 			}
        		 if (btn1.getText()==(""+1)){
@@ -1067,36 +1063,27 @@ String firstnum2;
 		   
 		btn2.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-			/*if (btn2.getText()==""){
-				btn2.setText(firstnum);	
-				} else{
-					firstnum=btn2.getText();
-					btn2.setText("");
-				}
-				}
 		
-		});*/
-			
 			if (btn2.getText()==""){
 				
 			} else{
 				if (btn1.getText()==""){
+					array[0]=array[1];
+					array[1]=0;
 					btn1.setText(btn2.getText());
 					btn2.setText("");
-			//		btn1.setBackground(Color.GREEN);
-			//		btn2.setBackground(Color.RED);
 				}
                 if (btn6.getText()==""){
+                	array[5]=array[1];
+					array[1]=0;
                 	btn6.setText(btn2.getText());
 					btn2.setText("");
-			//		btn6.setBackground(Color.GREEN);
-			//		btn2.setBackground(Color.RED);
-				}			
+			}			
                 if (btn3.getText()==""){
+                	array[2]=array[1];
+					array[1]=0;
                 	btn3.setText(btn2.getText());
 					btn2.setText("");
-			//		btn3.setBackground(Color.GREEN);
-			//		btn2.setBackground(Color.RED);
 				}			
 		
 			}
@@ -1144,32 +1131,22 @@ String firstnum2;
 		   
 		btn1.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-	/*		if (btn1.getText()==""){
-				btn1.setText(firstnum);	
-				} else{
-					firstnum=btn1.getText();
-					btn1.setText("");
-				}
-				}
-		
-		});*/
-		
 	
 			if (btn1.getText()==""){
 				
 				} else{
 					if (btn5.getText()==""){
+						array[4]=array[0];
+						array[0]=0;
 						btn5.setText(btn1.getText());
 						btn1.setText("");
-			//			btn5.setBackground(Color.GREEN);
-			//			btn1.setBackground(Color.RED);
-					}
+			}
                     if (btn2.getText()==""){
+                    	array[1]=array[0];
+						array[0]=0;
                     	btn2.setText(btn1.getText());
 						btn1.setText("");
-				//		btn2.setBackground(Color.GREEN);
-				//		btn1.setBackground(Color.RED);
-					}			
+				}			
 					
 				}
 			 if (btn1.getText()==(""+1)){
@@ -1219,31 +1196,21 @@ String firstnum2;
 		public void actionPerformed(ActionEvent arg0){
 			
 			
-	
-		/*	if (btn.getText()==""){
-				btn.setText(firstnum);	
-				} else{
-					firstnum=btn.getText();
-					btn.setText("");
-				}
-				}
-		
-		});*/
 			 if (btn.getText()==""){
 					
 				} else{
 					if (btnft.getText()==""){
+						array[14]=array[15];
+						array[15]=0;
 						btnft.setText(btn.getText());
 						btn.setText("");
-				//		btnft.setBackground(Color.GREEN);
-				//		btn.setBackground(Color.RED);
 					}
 					if (btntw.getText()==""){
+						array[11]=array[15];
+						array[15]=0;
 						btntw.setText(btn.getText());
 						btn.setText("");
-				//		btntw.setBackground(Color.GREEN);
-				//		btn.setBackground(Color.RED);
-					}
+				}
 				}
 			 if (btn1.getText()==(""+1)){
 					if (btn2.getText()==(""+2)){
@@ -1298,48 +1265,34 @@ String firstnum2;
 		public void actionPerformed(ActionEvent arg0){
 			
 			
-	/*
-			if (btnten.getText()==""){
-				btnten.setText(firstnum);	
-				} else{
-					firstnum=btnten.getText();
-					btnten.setText("");
-				}
-				}
-		
-		});
-*/
 			 if (btnten.getText()==""){
 					
 				} else{
 					if (btnel.getText()==""){
+						array[10]=array[9];
+						array[9]=0;
 						btnel.setText(btnten.getText());
 						btnten.setText("");
-				//		btnel.setBackground(Color.GREEN);
-				//		btnten.setBackground(Color.RED);
 					}
 					if (btn6.getText()==""){
+						array[5]=array[9];
+						array[9]=0;
 						btn6.setText(btnten.getText());
 						btnten.setText("");
-					//	btn6.setBackground(Color.GREEN);
-					//	btnten.setBackground(Color.RED);
 					}
 					if (btn9.getText()==""){
+						array[8]=array[9];
+						array[9]=0;
 						btn9.setText(btnten.getText());
 						btnten.setText("");
-					//	btn9.setBackground(Color.GREEN);
-					//	btnten.setBackground(Color.RED);
 					}
 					if (btnfr.getText()==""){
+						array[13]=array[9];
+						array[9]=0;
 						btnfr.setText(btnten.getText());
 						btnten.setText("");
-					//	btnfr.setBackground(Color.GREEN);
-					//	btnten.setBackground(Color.RED);
-					}
-
-
-
-					}
+						}
+                     }
 			 if (btn1.getText()==(""+1)){
 					if (btn2.getText()==(""+2)){
 						if (btn3.getText()==(""+3)){
@@ -1387,44 +1340,32 @@ String firstnum2;
 		btnel.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
 			
-			
-	
-			/*if (btnel.getText()==""){
-				btnel.setText(firstnum);	
-				} else{
-					firstnum=btnel.getText();
-					btnel.setText("");
-				}
-				}
-		
-		});*/
-
-			 if (btnel.getText()==""){
+						 if (btnel.getText()==""){
 					
 				} else{
 					if (btn7.getText()==""){
+						array[6]=array[10];
+						array[10]=0;
 						btn7.setText(btnel.getText());
 						btnel.setText("");
-				//		btn7.setBackground(Color.GREEN);
-				//		btnel.setBackground(Color.RED);
-					}
+				}
 					if (btnten.getText()==""){
+						array[9]=array[10];
+						array[10]=0;
 						btnten.setText(btnel.getText());
 						btnel.setText("");
-					//	btnten.setBackground(Color.GREEN);
-					//	btnel.setBackground(Color.RED);
 					}
 					if (btntw.getText()==""){
+						array[11]=array[10];
+						array[10]=0;
 						btntw.setText(btnel.getText());
 						btnel.setText("");
-					//	btntw.setBackground(Color.GREEN);
-					//	btnel.setBackground(Color.RED);
 					}
 					if (btnft.getText()==""){
+						array[14]=array[10];
+						array[10]=0;
 						btnft.setText(btnel.getText());
 						btnel.setText("");
-					//	btnft.setBackground(Color.GREEN);
-					//	btnel.setBackground(Color.RED);
 					}
 
 
@@ -1476,41 +1417,29 @@ String firstnum2;
 		btntw.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
 			
-			
-	
-/*			if (btntw.getText()==""){
-				btntw.setText(firstnum);	
-				} else{
-					firstnum=btntw.getText();
-					btntw.setText("");
-				}
-				}
-		
-		});
-	*/
-			 if (btntw.getText()==""){
+					 if (btntw.getText()==""){
 					
 				} else{
 					if (btn8.getText()==""){
+						array[7]=array[11];
+						array[11]=0;
 						btn8.setText(btntw.getText());
 						btntw.setText("");
-				//		btn8.setBackground(Color.GREEN);
-					//	btntw.setBackground(Color.RED);
-					}
+				}
 					if (btnel.getText()==""){
+						array[10]=array[11];
+						array[11]=0;
 						btnel.setText(btntw.getText());
 						btntw.setText("");
-					//	btnel.setBackground(Color.GREEN);
-					//	btntw.setBackground(Color.RED);
 					
 					}
 
 					if (btn.getText()==""){
+						array[15]=array[11];
+						array[11]=0;
 						btn.setText(btntw.getText());
 						btntw.setText("");
-					//	btn.setBackground(Color.GREEN);
-					//	btntw.setBackground(Color.RED);
-					}
+						}
 
 					}
 			 if (btn1.getText()==(""+1)){
@@ -1559,35 +1488,22 @@ String firstnum2;
 		btnth.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
 			
-			
-	
-/*			if (btnth.getText()==""){
-				btnth.setText(firstnum);	
-				} else{
-					firstnum=btnth.getText();
-					btnth.setText("");
-				}
-				}
-		
-		});*/
-			 if (btnth.getText()==""){
+					 if (btnth.getText()==""){
 					
 				} else{
 					if (btn9.getText()==""){
+						array[8]=array[12];
+						array[12]=0;
 						btn9.setText(btnth.getText());
 						btnth.setText("");
-					//	btn9.setBackground(Color.GREEN);
-					//	btnth.setBackground(Color.RED);
 					}
 					if (btnfr.getText()==""){
+						array[13]=array[12];
+						array[12]=0;
 						btnfr.setText(btnth.getText());
 						btnth.setText("");
-					//	btnfr.setBackground(Color.GREEN);
-					//	btnth.setBackground(Color.RED);
 					}
-
-
-					}
+}
 			 if (btn1.getText()==(""+1)){
 					if (btn2.getText()==(""+2)){
 						if (btn3.getText()==(""+3)){
@@ -1636,39 +1552,26 @@ String firstnum2;
 		
 		btnfr.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-			
-			
-	
-/*			if (btnfr.getText()==""){
-				btnfr.setText(firstnum);	
-				} else{
-					firstnum=btnfr.getText();
-					btnfr.setText("");
-				}
-				}
-		
-		});
-	*/
 			 if (btnfr.getText()==""){
 					
 				} else{
 					if (btnth.getText()==""){
+						array[12]=array[13];
+						array[13]=0;
 						btnth.setText(btnfr.getText());
 						btnfr.setText("");
-					//	btnth.setBackground(Color.GREEN);
-					//	btnfr.setBackground(Color.RED);
 					}
 					if (btnten.getText()==""){
+						array[9]=array[13];
+						array[13]=0;
 						btnten.setText(btnfr.getText());
 						btnfr.setText("");
-					//	btnten.setBackground(Color.GREEN);
-					//	btnfr.setBackground(Color.RED);
 					}
 					if (btnft.getText()==""){
+						array[14]=array[13];
+						array[13]=0;
 						btnft.setText(btnfr.getText());
 						btnfr.setText("");
-					//	btnft.setBackground(Color.GREEN);
-					//	btnfr.setBackground(Color.RED);
 					}
 				}
 			 if (btn1.getText()==(""+1)){
@@ -1716,40 +1619,27 @@ String firstnum2;
 		
 		btnft.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
-			
-			
-	
-/*			if (btnft.getText()==""){
-				btnft.setText(firstnum);	
-				} else{
-					firstnum=btnft.getText();
-					btnft.setText("");
-				}
-				}
-		
-		});
-	*/
-			 if (btnft.getText()==""){
+					 if (btnft.getText()==""){
 					
 				} else{
 					if (btnfr.getText()==""){
+						array[13]=array[14];
+						array[14]=0;
 						btnfr.setText(btnft.getText());
 						btnft.setText("");
-					//	btnfr.setBackground(Color.GREEN);
-					//	btnft.setBackground(Color.RED);
 					}
 					
 					if (btnel.getText()==""){
+						array[10]=array[14];
+						array[14]=0;
 						btnel.setText(btnft.getText());
 						btnft.setText("");
-					//	btnel.setBackground(Color.GREEN);
-					//	btnft.setBackground(Color.RED);
 					}
 					if (btn.getText()==""){
+						array[15]=array[14];
+						array[14]=0;
 						btn.setText(btnft.getText());
 						btnft.setText("");
-					//	btn.setBackground(Color.GREEN);
-					//	btnft.setBackground(Color.RED);
 					}
 				}
 			 if (btn1.getText()==(""+1)){
