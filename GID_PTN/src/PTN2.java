@@ -41,15 +41,14 @@ int m2=0;
 int tmp;
 	private JFrame frame;
 	private JFrame frame2;
-	private JFrame frame3;
-	private JFrame frame4;
 	private JFrame frame5;
-	private JFrame frame6;
+
 
 	/**
 	 * Launch the application.
 	 */
 	int[] array = new int[16];
+	int[] timearr = new int[5];
 	 int[][] matrix = new int[4][4];
 	 int[] buttons=new int[15];
 	
@@ -93,10 +92,14 @@ int tmp;
 	 */
 	private void initialize() {
 	
+		
+	
+
+
 		//---------------------Âòîðîå îêíî-------------------------//
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 295, 394);
+		frame.setBounds(450, 100, 295, 394);
 		 frame.setTitle("Ïÿòíàøêè");
 
 		 
@@ -105,12 +108,13 @@ int tmp;
 		frame.getContentPane().setLayout(null);
 		
 		
+		
 		//---------------------Ïåðâîå îêíî-------------------------//
 
 		
 		
 		frame2 = new JFrame();
-		frame2.setBounds(200, 50, 400, 379);
+		frame2.setBounds(450, 100, 400, 379);
 		 frame2.setTitle("Âõîä");
 
 		 frame2.getContentPane().setBackground(Color.BLACK);
@@ -118,21 +122,23 @@ int tmp;
 		 frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame2.getContentPane().setLayout(null);
 		
-		         //           LOGIN         //
-		
-		JLabel lblNewLabel = new JLabel("Login");
-		 lblNewLabel.setFont(new Font("Login",Font.BOLD,20));
-		lblNewLabel.setForeground(Color.BLUE);
-		lblNewLabel.setBounds(73, 46, 60, 23);
-		frame2.getContentPane().add(lblNewLabel);
-		
-		
-		JTextField txtfil = new JTextField();
-
-		txtfil.setBounds(140, 50, 86, 20);
-        frame2.getContentPane().add(txtfil);
-        txtfil.setColumns(10);
+		 //                CONTINUE ïåðåíåñåíà âûøå, ÷òî á îòîáðàæàëîñü
+		JButton btnStart2 = new JButton("CONTINUE");
+		btnStart2.setFont(new Font("Tahoma",Font.BOLD,20));
+		btnStart2.setBounds(40,64,300,60);
+		frame2.getContentPane().add(btnStart2);	
+		btnStart2.setForeground(Color.BLUE);
       
+		
+		JLabel txtregð7 = new JLabel("15 PUZZLE");
+		txtregð7.setFont(new Font("",Font.BOLD,30));
+		txtregð7.setForeground(Color.BLUE);
+		txtregð7.setBounds(120, 15, 300, 30);
+		frame2.getContentPane().add(txtregð7);
+		
+		
+		
+		
                    //         NEW GAME         //		
 		  JButton start2 = new JButton("START GAME");
 		
@@ -147,8 +153,11 @@ frame.setVisible(true);
 				}
 	);
 		  start2.setFont(new Font("Tahoma",Font.BOLD,20));
-		  start2.setBounds(30,112,300,60);
+		  start2.setBounds(40,152,300,60);
 				frame2.getContentPane().add(start2);
+			
+				
+				
 				
 				
 				//        ABOUT          //
@@ -163,201 +172,70 @@ frame.setVisible(true);
 					
 			);
 				  about.setFont(new Font("Tahoma",Font.BOLD,20));
-				  about.setBounds(30,200,300,60);
+				  about.setBounds(40,240,300,60);
 						frame2.getContentPane().add(about);
-						
-            //	       REGISTR          //
-						 JButton reg = new JButton("Register");
-						  reg.setForeground(Color.BLUE);
-						  reg.addActionListener(new ActionListener(){
-								public void actionPerformed(ActionEvent arg0){
-									
-		frame2.setVisible(false);
-		frame3.setVisible(true);
-								}
-								}
-							
-					);
-						  reg.setFont(new Font("Tahoma",Font.BOLD,16));
-						  reg.setBounds(30,300,143,30);
-								frame2.getContentPane().add(reg);
-								
-								
-		  //	       FORGOT          //
-								 JButton fr = new JButton("Forgot login");
-								  fr.setForeground(Color.BLUE);
-								  fr.addActionListener(new ActionListener(){
-										public void actionPerformed(ActionEvent arg0){
-											frame2.setVisible(false);
-											frame4.setVisible(true);
-				
-										}
-										}
-									
-							);
-								  fr.setFont(new Font("Tahoma",Font.BOLD,16));
-								  fr.setBounds(185,300,143,30);
-										frame2.getContentPane().add(fr);
-										
-										//---------------------Òðåòüå îêíî-------------------------//
+		
 
-										
-										
-										frame3 = new JFrame();
-										frame3.setBounds(200, 50, 400, 379);
-										 frame3.setTitle("Ðåãèñòðàöèÿ");
-
-										 frame3.getContentPane().setBackground(Color.BLACK);
-										 
-										 frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-										frame3.getContentPane().setLayout(null);
-										
-										 //           LOGIN 2         //
-										
-										JLabel txtreg = new JLabel("Write name:");
-										txtreg.setFont(new Font("Write name:",Font.BOLD,15));
-										txtreg.setForeground(Color.BLUE);
-										txtreg.setBounds(0, 46, 90, 23);
-										frame3.getContentPane().add(txtreg);
-										
-										
-										JTextField reglogin = new JTextField();
-
-										reglogin.setBounds(120, 50, 86, 20);
-								        frame3.getContentPane().add(reglogin);
-								        reglogin.setColumns(10);
-								        
- //           LOGIN 3         //
-										
-										JLabel txtreg2 = new JLabel("Write telepone:");
-										txtreg2.setFont(new Font("Write telepone:",Font.BOLD,15));
-										txtreg2.setForeground(Color.BLUE);
-										txtreg2.setBounds(0, 90, 120, 23);
-										frame3.getContentPane().add(txtreg2);
-										
-										
-										JTextField reglogin2= new JTextField();
-
-										reglogin2.setBounds(120, 93, 86, 20);
-								        frame3.getContentPane().add(reglogin2);
-								        reglogin2.setColumns(10);
-								        
-		      //           LOGIN 4          //      
-								        
-								    	JRadioButton rdbtnNewRadioButton = new JRadioButton("I am agreement with all rules");
-										rdbtnNewRadioButton.setBounds(0, 150, 200, 23);
-										frame3.getContentPane().add(rdbtnNewRadioButton);
-										
-										
-										 
-									      //           LOGIN 5       //  	 
-										 JButton fr2 = new JButton("REGISTER");
-										  fr2.setForeground(Color.BLUE);
-										  fr2.addActionListener(new ActionListener(){
-												public void actionPerformed(ActionEvent arg0){
-													 if ( rdbtnNewRadioButton.isSelected() ){
-														  
-													frame3.setVisible(false);
-													frame2.setVisible(true);}	
-						
-												}
-												}
-											
-									);
-										  fr2.setFont(new Font("Tahoma",Font.BOLD,16));
-										  fr2.setBounds(110,250,143,30);
-												frame3.getContentPane().add(fr2);
-												
-												//---------------------×åòâåðòîå îêíî-------------------------//
-												
-												frame4 = new JFrame();
-												frame4.setBounds(200, 50, 400, 379);
-												 frame4.setTitle("Âîññòàíîâëåíèå");
-
-												 frame4.getContentPane().setBackground(Color.BLACK);
-												 
-												 frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-												frame4.getContentPane().setLayout(null);
-												
-								 //           FORGOT 1           //
-												
-												JLabel txtregð = new JLabel("Write telephone:");
-												txtregð.setFont(new Font("Write name:",Font.BOLD,15));
-												txtregð.setForeground(Color.BLUE);
-												txtregð.setBounds(0, 46, 120, 23);
-												frame4.getContentPane().add(txtregð);
-												
-												
-												JTextField regloginq = new JTextField();
-
-												regloginq.setBounds(120, 50, 90, 20);
-										        frame4.getContentPane().add(regloginq);
-										        regloginq.setColumns(10);		
-		   //           FORGOT 2         //      	        
-										        
-										        JButton fr3 = new JButton("RESTORE");
-												  fr3.setForeground(Color.BLUE);
-												  fr3.addActionListener(new ActionListener(){
-														public void actionPerformed(ActionEvent arg0){
-														frame4.setVisible(false);
-														frame2.setVisible(true);
-								
-														}
-														}
-													
-											);
-												  fr3.setFont(new Font("Tahoma",Font.BOLD,16));
-												  fr3.setBounds(110,250,143,30);
-														frame4.getContentPane().add(fr3);
-												
-														
 
 					//---------------------Ïÿòîå îêíî-------------------------//
 														
-											frame5 = new JFrame();
-											frame5.setBounds(200, 50, 400, 379);
-												 frame5.setTitle("Âîññòàíîâëåíèå");
+frame5 = new JFrame();
+frame5.setBounds(450, 100, 400, 379);
+frame5.setTitle("About");
 
-											 frame5.getContentPane().setBackground(Color.BLACK);
-														 
-												 frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-												frame5.getContentPane().setLayout(null);
+frame5.getContentPane().setBackground(Color.BLACK);
+frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+frame5.getContentPane().setLayout(null);
+
+
+
 														
 							 //           ABOUT 1           //	
 												
-												JLabel txtregð2 = new JLabel("My id in vk: 134550105");
-												txtregð2.setFont(new Font("My id in vk: 134550105:",Font.BOLD,20));
-												txtregð2.setForeground(Color.GREEN);
-												txtregð2.setBounds(0, 46, 300, 23);
-												frame5.getContentPane().add(txtregð2);
-												
+JLabel txtregð2 = new JLabel("Ñreated by:  id134550105");
+txtregð2.setFont(new Font("",Font.BOLD,20));
+txtregð2.setForeground(Color.RED);
+txtregð2.setBounds(10, 100, 300, 23);
+frame5.getContentPane().add(txtregð2);
+JLabel txtregð6 = new JLabel("                    "+"id52964080");
+txtregð6.setFont(new Font("",Font.BOLD,20));
+txtregð6.setForeground(Color.RED);
+txtregð6.setBounds(10, 120, 300, 23);
+frame5.getContentPane().add(txtregð6);												
 												
 								 //           ABOUT 3          //				
-												JLabel lblNewLabel2 = new JLabel("");
-												lblNewLabel2.setBounds(-15, 0, 400, 350);
-											
-												Image img; 
-												img = new ImageIcon("d://Kursova.jpg").getImage(); 
-												 lblNewLabel2.setIcon(new ImageIcon(img));
-												 
-													frame5.getContentPane().add(lblNewLabel2);
+JLabel lblNewLabel2 = new JLabel("");
+lblNewLabel2.setBounds(0, 0, 400, 350);
+Image img; 
+img = new ImageIcon("d://Kursov.jpg").getImage(); 
+lblNewLabel2.setIcon(new ImageIcon(img));
+frame5.getContentPane().add(lblNewLabel2);
 												
 								 //           ABOUT 2           //					
-												 JButton fr4 = new JButton("BACK");
-												  fr4.setForeground(Color.BLUE);
-												  fr4.addActionListener(new ActionListener(){
-														public void actionPerformed(ActionEvent arg0){
-														frame5.setVisible(false);
-														frame2.setVisible(true);
-								
-														}
+JButton fr4 = new JButton("BACK");
+fr4.setForeground(Color.BLUE);
+fr4.addActionListener(new ActionListener(){
+public void actionPerformed(ActionEvent arg0){
+frame5.setVisible(false);
+frame2.setVisible(true);
+													}
 														}
 													
 											);
-												  fr4.setFont(new Font("Tahoma",Font.BOLD,16));
-												  fr4.setBounds(110,250,143,30);
-														frame5.getContentPane().add(fr4);			
-												
+fr4.setFont(new Font("Tahoma",Font.BOLD,16));
+fr4.setBounds(110,250,143,30);
+frame5.getContentPane().add(fr4);			
+
+JLabel lblNewLabel4 = new JLabel("");
+lblNewLabel4.setBounds(0, 0, 400, 340);
+Image img2; 
+img2 = new ImageIcon("d://Kurso.jpg").getImage(); 
+lblNewLabel4.setIcon(new ImageIcon(img2));
+frame2.getContentPane().add(lblNewLabel4);
+
+
+
+
 		//-----------------------------------------------------------//
 	JButton btnNewButton2 = new JButton("START");
 
@@ -446,6 +324,7 @@ frame.setVisible(true);
 			        }, 1000, 1000); 
 				
 					}
+					
 				});
 				btnNewButton2.setBounds(95, 298, 89, 23);
 				frame.getContentPane().add(btnNewButton2);
@@ -611,58 +490,34 @@ frame.setVisible(true);
 				
 			//         Ãåíåðàöèÿ ïÿòíàøåê èç ïðîøëîé èãðû	
 				
-				JButton btnStart2 = new JButton("NEW");
-				btnStart2.setForeground(Color.BLUE);
 				btnStart2.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
-
-	/*     btnNewButton2.setText("START");
-				  i=0 ;
-		            m=0;
-		            i2=0 ;
-		           m2=0;
-		       	txtregð3.setText(""+m2+i2+":"+m+i+"");
-				int sum=0;
-				do{
-					NEW();
-					sum=0;
-					for(int i=0;i<16;i++){
-						if(array[i]==0){
-					sum+=i/4;
-					continue;
-					}
-		for (int j=i+1;j<16;j++){
-			if (array[j]<array[i])
-				sum++;
-		}
-					}
-			txtregð5.setText(""+sum);
-				}
-				while (sum % 2==1);
-				*/try { 
+                     try { 
 							File file = new File("file.txt");
 					        Scanner s = new Scanner(System.in).useDelimiter(" "); ; 
 					        FileReader fr = new FileReader(file); 
-						
-							s=new Scanner(fr);
-							//txtfil.setText(""+s.nextInt());
-							
-							
-								for(int y=0;y<16;y++){
+						s=new Scanner(fr);
+							for(int y=0;y<16;y++){
 							array[y]=s.nextInt();} 
-							/*File file2 = new File("file2.txt");
-							FileWriter fw = new FileWriter(file2); 
-							
-							fw.write(s.nextInt()+" ");
-							fw.flush();
-							fw.close(); */
-							
-							
-							
 				} catch (IOException error) { }
-							
-						
-							
+                     
+                     try { 
+							File file2 = new File("file2.txt");
+					        Scanner s2 = new Scanner(System.in).useDelimiter(" "); ; 
+					        FileReader fr2 = new FileReader(file2); 
+						s2=new Scanner(fr2);
+							for(int y=0;y<4;y++){
+							timearr[y]=s2.nextInt();}
+							m2=timearr[0];
+							i2=timearr[1];
+							m=timearr[2];
+							i=timearr[3];
+						  	txtregð3.setText(""+m2+i2+":"+m+i+"");
+				} catch (IOException error) { }    
+                     
+                     
+                  //   m2+" "+i2+" "+m+" "+i    
+                     
 				btn1.setText(""+array[0]);
 				btn2.setText(""+array[1]);
 				btn3.setText(""+array[2]);
@@ -706,8 +561,7 @@ frame.setVisible(true);
 			 frame.setVisible(true);
 					}
 					});
-					btnStart2.setBounds(0, 0, 89, 23);
-					frame2.getContentPane().add(btnStart2);	
+				
 				
 				
 				
@@ -724,60 +578,28 @@ frame.setVisible(true);
 					if (btn3.getText()==""){
 						array[2]=array[7];
 						array[6]=0;
-						try { 
-							File file = new File("file.txt"); 
-							
-							FileWriter fw = new FileWriter(file); 
-							for(int y=0;y<16;y++){
-							fw.write(array[y]+" ");
-							fw.flush();}  
-							fw.close(); 
-						} catch (IOException error) { }
+						
 						btn3.setText(btn7.getText());
 						btn7.setText("");
 					}
 					if (btnel.getText()==""){
 						array[10]=array[6];
 						array[6]=0;
-						try { 
-							File file = new File("file.txt"); 
-							
-							FileWriter fw = new FileWriter(file); 
-							for(int y=0;y<16;y++){
-							fw.write(array[y]+" ");
-							fw.flush();}  
-							fw.close(); 
-						} catch (IOException error) { }
+						
 						btnel.setText(btn7.getText());
 						btn7.setText("");
 					}
 					if (btn6.getText()==""){
 						array[5]=array[6];
 						array[6]=0;
-						try { 
-							File file = new File("file.txt"); 
-							
-							FileWriter fw = new FileWriter(file); 
-							for(int y=0;y<16;y++){
-							fw.write(array[y]+" ");
-							fw.flush();}  
-							fw.close(); 
-						} catch (IOException error) { }
+						
 						btn6.setText(btn7.getText());
 						btn7.setText("");
 					}
 					if (btn8.getText()==""){
 						array[7]=array[6];
 						array[6]=0;
-						try { 
-							File file = new File("file.txt"); 
-							
-							FileWriter fw = new FileWriter(file); 
-							for(int y=0;y<16;y++){
-							fw.write(array[y]+" ");
-							fw.flush();}  
-							fw.close(); 
-						} catch (IOException error) { }
+						
 						btn8.setText(btn7.getText());
 						btn7.setText("");
 				
@@ -850,6 +672,7 @@ JOptionPane.showMessageDialog(frame, msg);
 		btn8.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn8.setBounds(207,111,70,60);
 		frame.getContentPane().add(btn8);
+		
 		 /*------------------------9-----------------------*/   
 		   
 
@@ -1486,6 +1309,23 @@ public void actionPerformed(ActionEvent arg0) {
 			fw.flush();}  
 			fw.close(); 
 		} catch (IOException error) { }
+	 
+	 try { 
+		 timearr[0]=m2;
+			timearr[1]=i2;
+			timearr[2]=m;
+			timearr[3]=i;
+			File file2 = new File("file2.txt"); 
+			
+			FileWriter fw = new FileWriter(file2); 
+			for(int y=0;y<4;y++){
+				fw.write(timearr[y]+" ");
+				
+				
+				fw.flush();}   
+			fw.close(); 
+		} catch (IOException error) { }
+	// m2+i2+":"+m+i
 }
 });
 btnNewButton3.setBounds(95, 325, 89, 23);
