@@ -6,8 +6,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.Scanner;
@@ -28,6 +26,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
+//import org.json.simple.JSONArray; 
+//import org.json.simple.JSONObject;
+
 
 public class PTN2 {
 String firstnum;
@@ -131,18 +132,15 @@ int tmp;
 		txtfil.setBounds(140, 50, 86, 20);
         frame2.getContentPane().add(txtfil);
         txtfil.setColumns(10);
-	
-		        
-		        
+      
                    //         NEW GAME         //		
 		  JButton start2 = new JButton("START GAME");
 		
 		  start2.setForeground(Color.BLUE);
 		  start2.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent arg0){
-					
-					
-
+			
+			
 frame2.setVisible(false);
 frame.setVisible(true);
 }
@@ -410,18 +408,17 @@ frame.setVisible(true);
 				 
 				
 //				  Кнопка запускающая таймер START/STOP
-				
-								btnNewButton2.setForeground(Color.BLUE);
+												btnNewButton2.setForeground(Color.BLUE);
 				btnNewButton2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 					if (btnNewButton2.getText()=="START"){
 						btnNewButton2.setText("STOP");	
 					}	else btnNewButton2.setText("START");
 				
-				
+				//         Timer
 				
 						final Timer time = new Timer();
-			        time.schedule(new TimerTask() {
+			        time.schedule(new TimerTask() { 
 			          
 			            @Override
 			            public void run() {
@@ -453,6 +450,8 @@ frame.setVisible(true);
 				btnNewButton2.setBounds(95, 298, 89, 23);
 				frame.getContentPane().add(btnNewButton2);
 				
+				
+				 // Первая генерация пятнашек 
 				
 				int sum=0;
 				do{
@@ -530,7 +529,8 @@ frame.setVisible(true);
 						btnft.setForeground(Color.RED);
 						btn.setForeground(Color.RED);
 		
-				
+				//    Генерация пятнашек по кнопке NEW
+						
 			JButton btnStart = new JButton("NEW");
 			btnStart.setForeground(Color.BLUE);
 			btnStart.addActionListener(new ActionListener() {
@@ -542,7 +542,9 @@ frame.setVisible(true);
 	            i2=0 ;
 	           m2=0;
 	       	txtregр3.setText(""+m2+i2+":"+m+i+"");
-			   
+			
+	       	
+	      
 			int sum=0;
 			do{
 				NEW();
@@ -560,6 +562,7 @@ frame.setVisible(true);
 		txtregр5.setText(""+sum);
 			}
 			while (sum % 2==1);
+			
 			btn1.setText(""+array[0]);
 			btn2.setText(""+array[1]);
 			btn3.setText(""+array[2]);
@@ -605,6 +608,113 @@ frame.setVisible(true);
 				});
 				btnStart.setBounds(0, 298, 89, 23);
 				frame.getContentPane().add(btnStart);
+				
+			//         Генерация пятнашек из прошлой игры	
+				
+				JButton btnStart2 = new JButton("NEW");
+				btnStart2.setForeground(Color.BLUE);
+				btnStart2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+
+	/*     btnNewButton2.setText("START");
+				  i=0 ;
+		            m=0;
+		            i2=0 ;
+		           m2=0;
+		       	txtregр3.setText(""+m2+i2+":"+m+i+"");
+				int sum=0;
+				do{
+					NEW();
+					sum=0;
+					for(int i=0;i<16;i++){
+						if(array[i]==0){
+					sum+=i/4;
+					continue;
+					}
+		for (int j=i+1;j<16;j++){
+			if (array[j]<array[i])
+				sum++;
+		}
+					}
+			txtregр5.setText(""+sum);
+				}
+				while (sum % 2==1);
+				*/try { 
+							File file = new File("file.txt");
+					        Scanner s = new Scanner(System.in).useDelimiter(" "); ; 
+					        FileReader fr = new FileReader(file); 
+						
+							s=new Scanner(fr);
+							//txtfil.setText(""+s.nextInt());
+							
+							
+								for(int y=0;y<16;y++){
+							array[y]=s.nextInt();} 
+							/*File file2 = new File("file2.txt");
+							FileWriter fw = new FileWriter(file2); 
+							
+							fw.write(s.nextInt()+" ");
+							fw.flush();
+							fw.close(); */
+							
+							
+							
+				} catch (IOException error) { }
+							
+						
+							
+				btn1.setText(""+array[0]);
+				btn2.setText(""+array[1]);
+				btn3.setText(""+array[2]);
+				btn4.setText(""+array[3]);
+				btn5.setText(""+array[4]);
+				btn6.setText(""+array[5]);
+				btn7.setText(""+array[6]);
+				btn8.setText(""+array[7]);
+				btn9.setText(""+array[8]);
+				btnten.setText(""+array[9]);
+				btnel.setText(""+array[10]);
+				btntw.setText(""+array[11]);
+				btnth.setText(""+array[12]);
+				btnfr.setText(""+array[13]);
+				btnft.setText(""+array[14]);
+				btn.setText(""+array[15]);
+			 for (int i = 0; i < array.length; i++) {
+				    if (array[i] ==0){
+				    	secondnum=(""+array[i]);
+				   if (i==0){btn1.setText("");}    
+				   if (i==1){btn2.setText("");}
+				   if (i==2){btn3.setText("");}
+				   if (i==3){btn4.setText("");}
+				   if (i==4){btn5.setText("");}
+				   if (i==5){btn6.setText("");}
+				   if (i==6){btn7.setText("");}
+				   if (i==7){btn8.setText("");}
+				   if (i==8){btn9.setText("");}
+				   if (i==9){btnten.setText("");}
+				   if (i==10){btnel.setText("");}
+				   if (i==11){btntw.setText("");}
+				   if (i==12){btnth.setText("");}
+				   if (i==13){btnfr.setText("");}
+				   if (i==14){btnft.setText("");}
+				   if (i==15){btn.setText("");}
+				    }
+				    
+				 }
+				
+			 frame2.setVisible(false);
+			 frame.setVisible(true);
+					}
+					});
+					btnStart2.setBounds(0, 0, 89, 23);
+					frame2.getContentPane().add(btnStart2);	
+				
+				
+				
+				
+				
+				
+				
 	 /*------------------------7-----------------------*/ 
 	    btn7.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent arg0){
@@ -614,77 +724,78 @@ frame.setVisible(true);
 					if (btn3.getText()==""){
 						array[2]=array[7];
 						array[6]=0;
-						
+						try { 
+							File file = new File("file.txt"); 
+							
+							FileWriter fw = new FileWriter(file); 
+							for(int y=0;y<16;y++){
+							fw.write(array[y]+" ");
+							fw.flush();}  
+							fw.close(); 
+						} catch (IOException error) { }
 						btn3.setText(btn7.getText());
 						btn7.setText("");
 					}
 					if (btnel.getText()==""){
 						array[10]=array[6];
 						array[6]=0;
+						try { 
+							File file = new File("file.txt"); 
+							
+							FileWriter fw = new FileWriter(file); 
+							for(int y=0;y<16;y++){
+							fw.write(array[y]+" ");
+							fw.flush();}  
+							fw.close(); 
+						} catch (IOException error) { }
 						btnel.setText(btn7.getText());
 						btn7.setText("");
 					}
 					if (btn6.getText()==""){
 						array[5]=array[6];
 						array[6]=0;
+						try { 
+							File file = new File("file.txt"); 
+							
+							FileWriter fw = new FileWriter(file); 
+							for(int y=0;y<16;y++){
+							fw.write(array[y]+" ");
+							fw.flush();}  
+							fw.close(); 
+						} catch (IOException error) { }
 						btn6.setText(btn7.getText());
 						btn7.setText("");
 					}
 					if (btn8.getText()==""){
 						array[7]=array[6];
 						array[6]=0;
+						try { 
+							File file = new File("file.txt"); 
+							
+							FileWriter fw = new FileWriter(file); 
+							for(int y=0;y<16;y++){
+							fw.write(array[y]+" ");
+							fw.flush();}  
+							fw.close(); 
+						} catch (IOException error) { }
 						btn8.setText(btn7.getText());
 						btn7.setText("");
 				
 					}
-				
-					
-					}
-                //    for(int x=0;x<15;){
-                   // 	if (array[x]==x+1){
-                    	//	String msg;
-						//	 msg="You Win";
-				          //    JOptionPane.showMessageDialog(frame, msg);	
-                    //	}
-                   // }
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																				
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
+				    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
 		
-				}
-
-		});
+       }
+       });
 			
 	
 		btn7.setFont(new Font("Tahoma",Font.BOLD,20));
@@ -702,64 +813,39 @@ frame.setVisible(true);
 					if (btn4.getText()==""){
 						array[3]=array[7];
 						array[7]=0;
+						
 						btn4.setText(btn8.getText());
 						btn8.setText("");
-					//	btn4.setBackground(Color.GREEN);
-					//	btn8.setBackground(Color.RED);
+					
 					}if (btn7.getText()==""){
 						array[6]=array[7];
 						array[7]=0;
+						
 						btn7.setText(btn8.getText());
 						btn8.setText("");
-					//	btn7.setBackground(Color.GREEN);
-					//	btn8.setBackground(Color.RED);
+					
 					}
 					if (btntw.getText()==""){
 						array[11]=array[7];
 						array[7]=0;
+						
 						btntw.setText(btn8.getText());
 						btn8.setText("");
-					//	btntw.setBackground(Color.GREEN);
-					//	btn8.setBackground(Color.RED);
 					}
-					}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-		           
-				}
-
-		});
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
+	
+   }
+   });
 	
 		btn8.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn8.setBounds(207,111,70,60);
@@ -776,6 +862,7 @@ frame.setVisible(true);
 					if (btn5.getText()==""){
 						array[4]=array[8];
 						array[8]=0;
+						
 						btn5.setText(btn9.getText());
 						btn9.setText("");
 					}
@@ -783,6 +870,7 @@ frame.setVisible(true);
 					if (btnten.getText()==""){
 						array[9]=array[8];
 						array[8]=0;
+						
 						btnten.setText(btn9.getText());
 						btn9.setText("");
 					}
@@ -790,48 +878,24 @@ frame.setVisible(true);
 					if (btnth.getText()==""){
 						array[12]=array[8];
 						array[8]=0;
+						
 						btnth.setText(btn9.getText());
 						btn9.setText("");
 					}
-					}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-		           
-				}
-
-		});
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
 	
+   }
+   });
 		btn9.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn9.setBounds(0,170,70,59);
 		frame.getContentPane().add(btn9);
@@ -867,45 +931,20 @@ frame.setVisible(true);
 				btnten.setText(btn6.getText());
 				btn6.setText("");
 			}
-		}
-   		 if (btn1.getText()==(""+1)){
-				if (btn2.getText()==(""+2)){
-					if (btn3.getText()==(""+3)){
-						if (btn4.getText()==(""+4)){
-							if (btn5.getText()==(""+5)){
-								if (btn6.getText()==(""+6)){
-									if (btn7.getText()==(""+7)){
-										if (btn8.getText()==(""+8)){
-											if (btn9.getText()==(""+9)){
-												if (btnten.getText()==(""+10)){
-													if (btnel.getText()==(""+11)){
-														if (btntw.getText()==(""+12)){
-															if (btnth.getText()==(""+13)){
-																if (btnfr.getText()==(""+14)){
-																	if (btnft.getText()==(""+15)){
-																		if (btn.getText()==("")){ String msg;
-																		 msg="You Win";
-															              JOptionPane.showMessageDialog(frame, msg);
-																	}
-																}
-															}
-														}
-														
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}}}
-           
-		}
+	    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
 
+}
 });
-	
 		btn6.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn6.setBounds(69,111,70,60);
 		frame.getContentPane().add(btn6);
@@ -935,44 +974,20 @@ frame.setVisible(true);
 				btn9.setText(btn5.getText());
 				btn5.setText("");
 			}
-		}
-   		 if (btn1.getText()==(""+1)){
-				if (btn2.getText()==(""+2)){
-					if (btn3.getText()==(""+3)){
-						if (btn4.getText()==(""+4)){
-							if (btn5.getText()==(""+5)){
-								if (btn6.getText()==(""+6)){
-									if (btn7.getText()==(""+7)){
-										if (btn8.getText()==(""+8)){
-											if (btn9.getText()==(""+9)){
-												if (btnten.getText()==(""+10)){
-													if (btnel.getText()==(""+11)){
-														if (btntw.getText()==(""+12)){
-															if (btnth.getText()==(""+13)){
-																if (btnfr.getText()==(""+14)){
-																	if (btnft.getText()==(""+15)){
-																		if (btn.getText()==("")){ String msg;
-																		 msg="You Win";
-															              JOptionPane.showMessageDialog(frame, msg);
-																	}
-																}
-															}
-														}
-														
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}}}
-		}
+	    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
 
+}
 });
-	
 		btn5.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn5.setBounds(0,111,70,60);
 		frame.getContentPane().add(btn5);
@@ -995,44 +1010,20 @@ frame.setVisible(true);
 				btn8.setText(btn4.getText());
 				btn4.setText("");
 			}
-		}
-   		 if (btn1.getText()==(""+1)){
-				if (btn2.getText()==(""+2)){
-					if (btn3.getText()==(""+3)){
-						if (btn4.getText()==(""+4)){
-							if (btn5.getText()==(""+5)){
-								if (btn6.getText()==(""+6)){
-									if (btn7.getText()==(""+7)){
-										if (btn8.getText()==(""+8)){
-											if (btn9.getText()==(""+9)){
-												if (btnten.getText()==(""+10)){
-													if (btnel.getText()==(""+11)){
-														if (btntw.getText()==(""+12)){
-															if (btnth.getText()==(""+13)){
-																if (btnfr.getText()==(""+14)){
-																	if (btnft.getText()==(""+15)){
-																		if (btn.getText()==("")){ String msg;
-																		 msg="You Win";
-															              JOptionPane.showMessageDialog(frame, msg);
-																	}
-																}
-															}
-														}
-														
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}}}
-		}
+	    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
 
+}
 });
-	
 		btn4.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn4.setBounds(207,53,70,60);
 		frame.getContentPane().add(btn4);
@@ -1061,45 +1052,20 @@ frame.setVisible(true);
 					btn4.setText(btn3.getText());
 					btn3.setText("");
 				}
-			}
-       		 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-			}
-	
-	});
-			
-	
+		    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
+
+}
+});
 		btn3.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn3.setBounds(138,53,70,60);
 		frame.getContentPane().add(btn3);
@@ -1128,46 +1094,21 @@ frame.setVisible(true);
 					array[1]=0;
                 	btn3.setText(btn2.getText());
 					btn2.setText("");
-				}			
-		
-			}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-			}
-	
-	});
-	
+                }
+		    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
+
+}
+});
 		btn2.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn2.setBounds(69,53,70,60);
 		frame.getContentPane().add(btn2);
@@ -1190,45 +1131,21 @@ frame.setVisible(true);
 						array[0]=0;
                     	btn2.setText(btn1.getText());
 						btn1.setText("");
-				}			
-					
-				}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-				}
-		
-		});
+                    }
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
+	
+   }
+   });
 		btn1.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn1.setBounds(0,53,70,60);
 		frame.getContentPane().add(btn1);
@@ -1254,45 +1171,21 @@ frame.setVisible(true);
 						array[15]=0;
 						btntw.setText(btn.getText());
 						btn.setText("");
-				}
-				}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-		           }
-
-		});
+					}
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
 	
+   }
+   });
 		btn.setFont(new Font("Tahoma",Font.BOLD,20));
 		btn.setBounds(207,228,70,59);
 		frame.getContentPane().add(btn);
@@ -1335,45 +1228,21 @@ frame.setVisible(true);
 						array[9]=0;
 						btnfr.setText(btnten.getText());
 						btnten.setText("");
-						}
-                     }
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-		           
-				}
-
-		});
+					}
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
+	
+   }
+   });
 		btnten.setFont(new Font("Tahoma",Font.BOLD,20));
 		btnten.setBounds(69,169,70,60);
 		frame.getContentPane().add(btnten);
@@ -1411,47 +1280,20 @@ frame.setVisible(true);
 						btnft.setText(btnel.getText());
 						btnel.setText("");
 					}
-
-
-					}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-		           
-				}
-
-		});
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
 	
+   }
+   });
 		btnel.setFont(new Font("Tahoma",Font.BOLD,20));
 		btnel.setBounds(138,169,70,60);
 		frame.getContentPane().add(btnel);
@@ -1483,46 +1325,21 @@ frame.setVisible(true);
 						array[11]=0;
 						btn.setText(btntw.getText());
 						btntw.setText("");
-						}
-
 					}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-		           
-				}
-
-		});
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
+	
+   }
+   });
 		btntw.setFont(new Font("Tahoma",Font.BOLD,20));
 		btntw.setBounds(207,169,70,60);
 		frame.getContentPane().add(btntw);
@@ -1547,47 +1364,20 @@ frame.setVisible(true);
 						btnfr.setText(btnth.getText());
 						btnth.setText("");
 					}
-}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-		           
-				}
-
-		});
-		
-		
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
 	
+   }
+   });
 		btnth.setFont(new Font("Tahoma",Font.BOLD,20));
 		btnth.setBounds(0,227,70,60);
 		frame.getContentPane().add(btnth);
@@ -1617,44 +1407,20 @@ frame.setVisible(true);
 						btnft.setText(btnfr.getText());
 						btnfr.setText("");
 					}
-				}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-		           }
-
-		});
-		
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
+	
+   }
+   });
 		btnfr.setFont(new Font("Tahoma",Font.BOLD,20));
 		btnfr.setBounds(69,227,70,60);
 		frame.getContentPane().add(btnfr);
@@ -1685,47 +1451,47 @@ frame.setVisible(true);
 						btn.setText(btnft.getText());
 						btnft.setText("");
 					}
-				}
-			 if (btn1.getText()==(""+1)){
-					if (btn2.getText()==(""+2)){
-						if (btn3.getText()==(""+3)){
-							if (btn4.getText()==(""+4)){
-								if (btn5.getText()==(""+5)){
-									if (btn6.getText()==(""+6)){
-										if (btn7.getText()==(""+7)){
-											if (btn8.getText()==(""+8)){
-												if (btn9.getText()==(""+9)){
-													if (btnten.getText()==(""+10)){
-														if (btnel.getText()==(""+11)){
-															if (btntw.getText()==(""+12)){
-																if (btnth.getText()==(""+13)){
-																	if (btnfr.getText()==(""+14)){
-																		if (btnft.getText()==(""+15)){
-																			if (btn.getText()==("")){ String msg;
-																			 msg="You Win";
-																              JOptionPane.showMessageDialog(frame, msg);
-																		}
-																	}
-																}
-															}
-															
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}}}
-		           }
-
-		});
+			    }
+if (array[0]==1){if (array[1]==2){if (array[2]==3){
+if (array[3]==4){if (array[4]==5){if (array[5]==6){
+if (array[6]==7){if (array[7]==8){if (array[8]==9){
+if (array[9]==10){if (array[10]==11){if (array[11]==12){
+if (array[12]==13){if (array[13]==14){if (array[14]==15){
+if (array[15]==0){
+String msg;
+msg="You Win";
+JOptionPane.showMessageDialog(frame, msg);
+}}}}}}}}}}}}}}}}
+	
+   }
+   });
 		btnft.setFont(new Font("Tahoma",Font.BOLD,20));
 		btnft.setBounds(138,227,70,60);
 		frame.getContentPane().add(btnft);
 
+		
+		JButton btnNewButton3 = new JButton("SAVE");
+		btnNewButton3.setForeground(Color.BLUE);
+btnNewButton3.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent arg0) {
+
+	 try { 
+			File file = new File("file.txt"); 
+			
+			FileWriter fw = new FileWriter(file); 
+			for(int y=0;y<16;y++){
+			fw.write(array[y]+" ");
+			
+			
+			fw.flush();}  
+			fw.close(); 
+		} catch (IOException error) { }
+}
+});
+btnNewButton3.setBounds(95, 325, 89, 23);
+frame.getContentPane().add(btnNewButton3);
+		
+		
 	}
 	}
 	
